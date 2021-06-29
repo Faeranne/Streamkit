@@ -1,0 +1,13 @@
+[Unit]
+Description=Camera Stream Startup
+DefaultDependencies=no
+After=network.target
+
+[Service]
+Type=simple
+User=pi
+Group=pi
+ExecStart=raspivid -t 0 -b 3000000 -fps 30 -w 1920 -h 1080 -o udp://239.255.1.2:1234 -ih -fl -stm -if adaptive -pf main -v -n
+
+[Install]
+WantedBy=default.target
